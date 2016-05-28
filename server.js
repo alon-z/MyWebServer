@@ -27,9 +27,9 @@ function onRequest(request, response) {
 			    }
 			    response.end();
 			    return;
-			  }
+			  });
 			}
-		}
+		});
 	}
 }
 

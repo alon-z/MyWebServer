@@ -13,15 +13,10 @@ function onRequest(request, response) {
 		response.writeHead(200, {"Content-Type": "text/html"})
 		fs.createReadStream("./index.html").pipe(response);
 	} else {
-		try {
-			file = fs.createReadStream("." + request.url);
-			file.on('error', send404(response));
-			response.writeHead(200, {"Content-Type": "text/html"})
-			file.pipe(response);
-		}
-		catch(err) {
-			send404();
-		}
+		file = fs.createReadStream("." + request.url);
+		file.on('error', send404(response));
+		response.writeHead(200, {"Content-Type": "text/html"})
+		file.pipe(response);
 	}
 }
 

@@ -14,9 +14,9 @@ function onRequest(request, response) {
 		fs.createReadStream("./index.html").pipe(response);
 	} else {
 		try {
-			response.writeHead(200, {"Content-Type": "text/html"})
 			file = fs.createReadStream("." + request.url);
-			file.on('error', send404());
+			file.on('error', send404(response));
+			response.writeHead(200, {"Content-Type": "text/html"})
 			file.pipe(response);
 		}
 		catch(err) {

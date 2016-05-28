@@ -1,5 +1,7 @@
-var http = require('http');
-var fs = require('fs');
+var http = require("http"),
+url = require("url"),
+path = require("path"),
+fs = require("fs");
 
 // 404!
 function send404(response) {

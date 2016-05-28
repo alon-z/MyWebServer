@@ -17,21 +17,24 @@ function onRequest(request, response) {
 	} else {
 		var uri = url.parse(request.url).pathname;
 		filename = path.join(process.cwd(), uri);
-		path.exists(filename, function(exists) {
-			if(!exists) {
-			  fs.readFile('404.html', "binary", function(err, file) {
-			    if(err) {
-			       response.writeHead(404, {"Content-Type": "text/html"});
-			       response.write("404 Not Found\n");
-			    } else {
-			       response.writeHead(404);
-			       response.write(file, "binary");
-			    }
-			    response.end();
-			    return;
-			  });
-			}
-		});
+		// path.exists(filename, function(exists) {
+		// 	if(!exists) {
+		// 	  fs.readFile('404.html', "binary", function(err, file) {
+		// 	    if(err) {
+		// 	       response.writeHead(404, {"Content-Type": "text/html"});
+		// 	       response.write("404 Not Found\n");
+		// 	    } else {
+		// 	       response.writeHead(404);
+		// 	       response.write(file, "binary");
+		// 	    }
+		// 	    response.end();
+		// 	    return;
+		// 	  });
+		// 	}
+		// });
+		response.writeHead(200)
+		fs.createReadStream("./index.html").pipe(response);
+		response.end();
 	}
 }
 

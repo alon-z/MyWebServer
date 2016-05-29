@@ -32,8 +32,8 @@ function onRequest(request, response) {
 		// 	  });
 		// 	}
 		// });
-		response.writeHead(200)
-		fs.createReadStream("./index.html").pipe(response);
+		response.writeHead(200);
+		response.write(fs.readFileSync(filename, 'utf8'));
 		response.end();
 	}
 }
